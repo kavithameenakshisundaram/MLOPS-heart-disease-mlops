@@ -1,0 +1,9 @@
+.venv
+__pycache__
+.ipynb_checkpoints
+.git
+mlruns
+notebook
+tests
+screenshots
+data/heart_disease_uci_raw.csv
