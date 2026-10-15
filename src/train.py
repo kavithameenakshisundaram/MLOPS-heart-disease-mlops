@@ -108,13 +108,17 @@ joblib.dump(model, model_path)
     )
 )
 
-mlflow.set_tracking_uri(MLRUN_DIR.resolve().as_uri())
+mlflow.set_tracking_uri(f"sqlite:///{BASE_DIR / 'mlflow.db'}")
 mlflow.set_experiment("heart-disease-classification")
 
 with mlflow.start_run(run_name="random-forest-final"):
     mlflow.log_params(search.best_params_)
     mlflow.log_metrics(metrics)
-    mlflow.sklearn.log_model(model, "model")
+    mlflow.sklearn.log_model(
+        model,
+        name="model",
+        skops_trusted_types=["numpy.dtype", "sklearn.tree._tree.Tree"],
+    )
 
 print("Best parameters:", search.best_params_)
 print("Metrics:", metrics)
