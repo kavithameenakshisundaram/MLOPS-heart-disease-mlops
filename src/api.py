@@ -1,13 +1,13 @@
-from pathlib import Path
 import logging
 import time
+from pathlib import Path
 from typing import Any
 
 import joblib
 import pandas as pd
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Histogram, generate_latest
 from starlette.responses import Response
 
 BASE_DIR = Path(__file__).resolve().parents[1]
